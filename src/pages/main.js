@@ -86,8 +86,8 @@ export default class Main extends Component {
     });
   }
 
-  onPressButtonSearch = () => {
-    this.setState({listOfFoodsFound: []});
+  onPressButtonSearch = async () => {
+    await this.setState({listOfFoodsFound: []});
     this.searchFoods();
   }
 

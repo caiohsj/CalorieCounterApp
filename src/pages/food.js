@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
  cellDisplayName: {
   padding: 20,
   fontWeight: 'bold',
-  fontSize: 15
+  fontSize: 17
  }
 });
 
