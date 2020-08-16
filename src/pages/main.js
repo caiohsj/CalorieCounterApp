@@ -13,7 +13,8 @@ export default class Main extends Component {
     search: '',
     listFoods: [],
     listOfFoodsFound: [],
-    notFound: ''
+    notFound: '',
+    listOfFoodsFoundLength: ''
   }
 
   render() {
@@ -37,6 +38,8 @@ export default class Main extends Component {
         </TouchableOpacity>
 
           <Text style={styles.textNotFound}>{ this.state.notFound }</Text>
+
+          <Text style={styles.textListOfFoodsFoundLength}>{ this.state.listOfFoodsFoundLength }</Text>
 
         <FlatList
           data={this.state.listOfFoodsFound}
@@ -89,14 +92,27 @@ export default class Main extends Component {
     });
     this.clearNotFound();
     this.checksIfNoFoodsWereFound();
+    this.checksIfFoodsWereFound();
   }
 
   checksIfNoFoodsWereFound = () => {
-    if (this.state.listOfFoodsFound.length == 0) this.setState({notFound: 'Not Found'});
+    if (this.state.listOfFoodsFound.length == 0) {
+      this.setState({notFound: 'Not Found'});
+    }
+  }
+
+  checksIfFoodsWereFound = () => {
+    if (this.state.listOfFoodsFound.length > 0) {
+      this.setState({listOfFoodsFoundLength: `${this.state.listOfFoodsFound.length} results`});
+    }
   }
 
   clearNotFound = () => {
     this.setState({notFound: ''});
+  }
+
+  clearListOfFoodsFoundLength = () => {
+    this.setState({listOfFoodsFoundLength: ''});
   }
 
   onPressButtonSearch = async () => {
@@ -110,6 +126,7 @@ export default class Main extends Component {
       search: ''
     });
     this.clearNotFound();
+    this.clearListOfFoodsFoundLength();
   }
 }
 
@@ -192,5 +209,8 @@ const styles = StyleSheet.create({
   },
   textNotFound: {
     marginLeft: 20
+  },
+  textListOfFoodsFoundLength: {
+    alignSelf: 'center'
   }
 });
