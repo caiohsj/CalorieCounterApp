@@ -12,7 +12,8 @@ export default class Main extends Component {
   state = {
     search: '',
     listFoods: [],
-    listOfFoodsFound: []
+    listOfFoodsFound: [],
+    notFound: ''
   }
 
   render() {
@@ -34,6 +35,8 @@ export default class Main extends Component {
         <TouchableOpacity onPress={this.onPressButtonClear} style={styles.buttonClear}>
           <Text style={styles.textButtonClear}>Clear Search</Text>
         </TouchableOpacity>
+
+          <Text style={styles.textNotFound}>{ this.state.notFound }</Text>
 
         <FlatList
           data={this.state.listOfFoodsFound}
@@ -84,6 +87,16 @@ export default class Main extends Component {
         limit++;
       }
     });
+    this.clearNotFound();
+    this.checksIfNoFoodsWereFound();
+  }
+
+  checksIfNoFoodsWereFound = () => {
+    if (this.state.listOfFoodsFound.length == 0) this.setState({notFound: 'Not Found'});
+  }
+
+  clearNotFound = () => {
+    this.setState({notFound: ''});
   }
 
   onPressButtonSearch = async () => {
@@ -96,6 +109,7 @@ export default class Main extends Component {
       listOfFoodsFound: [],
       search: ''
     });
+    this.clearNotFound();
   }
 }
 
@@ -175,5 +189,8 @@ const styles = StyleSheet.create({
     width: 100,
     marginTop: 10,
     marginBottom: 10
+  },
+  textNotFound: {
+    marginLeft: 20
   }
 });
