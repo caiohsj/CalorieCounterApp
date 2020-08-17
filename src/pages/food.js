@@ -19,6 +19,14 @@ const Food = (navigation) => {
           <Text style={styles.cellDisplayName}>{ 'Milk:' }</Text>
           <Text style={styles.cell}>{ food.Milk }</Text>
         </View>
+        <View style={styles.row}>
+          <Text style={styles.cellDisplayName}>{ 'Portion:' }</Text>
+          <Text style={styles.cell}>{ food.Portion_Display_Name }</Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.cellDisplayName}>{ 'Portion Amount:' }</Text>
+          <Text style={styles.cell}>{ food.Portion_Amount }</Text>
+        </View>
       </View>
     </View>
   );
